@@ -1,6 +1,19 @@
+# aliases
+alias ll='ls -Al'
+
+# machine specific
+if [ -r ~/.bashrc_pre ]; then
+   . ~/.bashrc_pre
+fi
+
 # composer global vendor binaries
 if [ -d ~/.composer/vendor/bin ]; then
     PATH=$PATH:~/.composer/vendor/bin
+fi
+
+# go
+if [ -n "$GOPATH" ]; then
+    PATH=$PATH:$GOPATH/bin
 fi
 
 # direnv hook
