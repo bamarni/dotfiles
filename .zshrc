@@ -30,6 +30,9 @@ docker-env() {
 
 docker-env >/dev/null 2>&1
 
+alias dm="docker-machine"
+alias tutum="docker run -it -e TUTUM_USER -e TUTUM_APIKEY tutum/cli"
+
 # go
 if type go >/dev/null 2>&1; then
     export GOPATH=$HOME/go
