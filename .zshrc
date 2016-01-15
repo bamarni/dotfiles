@@ -2,7 +2,7 @@ export ZSH=$HOME/.oh-my-zsh
 
 ZSH_THEME="robbyrussell"
 
-plugins=(git golang docker docker-compose composer)
+plugins=(git golang docker docker-compose)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -38,6 +38,11 @@ if type go >/dev/null 2>&1; then
     export GOPATH=$HOME/go
     PATH=$PATH:$GOPATH/bin
 fi
+
+# php
+alias c="composer"
+export PATH=$PATH:~/.composer/vendor/bin
+eval "$(symfony-autocomplete)"
 
 # direnv hook
 if type direnv >/dev/null 2>&1; then
