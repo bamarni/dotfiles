@@ -1,0 +1,3 @@
+#!/usr/bin/env sh
+
+docker run -it -e TUTUM_USER -e TUTUM_APIKEY tutum/cli ${@}

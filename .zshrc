@@ -22,27 +22,32 @@ docker-clean() {
     docker rm ${(f)ids}
 }
 
-docker-env() {
+# docker machine
+alias dm="docker-machine"
+
+dm-env() {
     local machine=${1-dev}
     echo "Setting up the environment for the \"$machine\" machine..."
     eval "$(docker-machine env ${machine})"
 }
 
-docker-env >/dev/null 2>&1
-
-alias dm="docker-machine"
-alias tutum="docker run -it -e TUTUM_USER -e TUTUM_APIKEY tutum/cli"
+dm-env >/dev/null 2>&1
 
 # go
 if type go >/dev/null 2>&1; then
     export GOPATH=$HOME/go
-    PATH=$PATH:$GOPATH/bin
+    PATH=$GOPATH/bin:$PATH
 fi
 
 # php
 alias c="composer"
-export PATH=$PATH:~/.composer/vendor/bin
-eval "$(symfony-autocomplete)"
+export PATH=$HOME/.composer/vendor/bin:$PATH
+eval "$(symfony-autocomplete --shell=zsh)"
+
+export PATH=$HOME/bin:$PATH
+
+# ansible
+alias ansible-playbook=ansible-playbook-debugger
 
 # direnv hook
 if type direnv >/dev/null 2>&1; then
