@@ -1,7 +1,0 @@
-#!/usr/bin/env sh
-
-if [[ -z "$SKIP_DOCKER_BIN" ]]; then
-    docker run -it --rm -v "$PWD":/usr/src/cwd -w /usr/src/cwd php:7-cli php ${@}
-else
-    /usr/local/bin/php ${@}
-fi

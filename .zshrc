@@ -6,6 +6,10 @@ plugins=(git golang docker docker-compose)
 
 source $ZSH/oh-my-zsh.sh
 
+# executables
+export PATH=$HOME/bin:$PATH
+
+
 # docker
 docker-clean() {
     if [[ "$1" == "-f" ]]; then
@@ -22,6 +26,7 @@ docker-clean() {
     docker rm ${(f)ids}
 }
 
+
 # docker machine
 alias dm="docker-machine"
 
@@ -33,21 +38,28 @@ dm-env() {
 
 dm-env >/dev/null 2>&1
 
+
 # go
 if type go >/dev/null 2>&1; then
     export GOPATH=$HOME/go
     PATH=$GOPATH/bin:$PATH
 fi
 
-# php
-alias c="composer"
-export PATH=$HOME/.composer/vendor/bin:$PATH
-eval "$(symfony-autocomplete --shell=zsh)"
 
-export PATH=$HOME/bin:$PATH
+# php
+alias php="php-bin php"
+alias composer="php-bin composer"
+alias phpspec="php-bin phpspec"
+alias phpunit="php-bin phpunit"
+
+export PATH=$HOME/.composer/vendor/bin:$PATH
+
+# doesn't work anymore (arguments are shifted due to "php-bin")
+#eval "$(SKIP_DOCKER_BIN=1 symfony-autocomplete --shell=zsh)"
 
 # ansible
 alias ansible-playbook=ansible-playbook-debugger
+
 
 # direnv hook
 if type direnv >/dev/null 2>&1; then
