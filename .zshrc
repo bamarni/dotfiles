@@ -51,14 +51,24 @@ alias php="php-bin php"
 alias composer="php-bin composer"
 alias phpspec="php-bin phpspec"
 alias phpunit="php-bin phpunit"
+alias c="composer"
 
 export PATH=$HOME/.composer/vendor/bin:$PATH
 
 # doesn't work anymore (arguments are shifted due to "php-bin")
 #eval "$(SKIP_DOCKER_BIN=1 symfony-autocomplete --shell=zsh)"
 
+
 # ansible
 alias ansible-playbook=ansible-playbook-debugger
+
+# for long running playbooks : "ansible-playbook ...; saydone"
+saydone() {
+    voices=("Good News" Whisper Hysterical Princess Bells "Bad News" Bahh)
+    words=(done maybe no failure "oh my god" finished yes success "you broke it")
+
+    say -v "${voices[RANDOM % ${#voices[@]} + 1]}" "${words[RANDOM % ${#words[@]} + 1]}"
+}
 
 
 # direnv hook
