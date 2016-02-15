@@ -55,9 +55,10 @@ alias c="composer"
 
 export PATH=$HOME/.composer/vendor/bin:$PATH
 
-# doesn't work anymore (arguments are shifted due to "php-bin")
-#eval "$(SKIP_DOCKER_BIN=1 symfony-autocomplete --shell=zsh)"
+eval "$(php-bin symfony-autocomplete --shell=zsh | dos2unix)"
 
+# autocompletion for executables inside the php docker container (shifts first word)
+_php_bin() { shift words; (( CURRENT-- )); _symfony && return; }; compdef _php_bin php-bin;
 
 # ansible
 alias ansible-playbook=ansible-playbook-debugger

@@ -1,7 +1,3 @@
 #!/usr/bin/env sh
 
-if [[ -z "$SKIP_DOCKER_BIN" ]]; then
-    docker run -it --rm -v ~/.composer:/root/.composer -v "$PWD":/usr/src/cwd -w /usr/src/cwd bamarni/php ${@}
-else
-    "php" ${@}
-fi
+docker run -it --rm -v ~/.composer:/root/.composer -v "$PWD":/usr/src/cwd -w /usr/src/cwd bamarni/php ${@}
