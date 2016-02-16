@@ -5,7 +5,7 @@ export ZSH=$HOME/.oh-my-zsh
 
 ZSH_THEME="robbyrussell"
 
-plugins=(git golang docker docker-machine docker-compose)
+plugins=(git golang docker docker-machine docker-compose php)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -35,21 +35,6 @@ if type go >/dev/null 2>&1; then
     export GOPATH=$HOME/go
     PATH=$GOPATH/bin:$PATH
 fi
-
-
-# php
-alias php="php-bin php"
-alias composer="php-bin composer"
-alias phpspec="php-bin phpspec"
-alias phpunit="php-bin phpunit"
-alias c="composer"
-
-export PATH=$HOME/.composer/vendor/bin:$PATH
-
-eval "$(docker run --rm -v ~/.composer:/root/.composer bamarni/php symfony-autocomplete --shell=zsh)"
-
-# autocompletion for executables inside the php docker container (shifts first word)
-_php_bin() { shift words; (( CURRENT-- )); _symfony && return; }; compdef _php_bin php-bin;
 
 # ansible
 alias ansible-playbook=ansible-playbook-debugger
