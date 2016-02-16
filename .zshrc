@@ -1,8 +1,11 @@
+[[ -t 0 ]] && stty -echo
+echo -n '\r\e[K'
+
 export ZSH=$HOME/.oh-my-zsh
 
 ZSH_THEME="robbyrussell"
 
-plugins=(git golang docker docker-compose)
+plugins=(git golang docker docker-machine docker-compose)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -27,18 +30,6 @@ docker-clean() {
 }
 
 
-# docker machine
-alias dm="docker-machine"
-
-dm-env() {
-    local machine=${1-dev}
-    echo "Setting up the environment for the \"$machine\" machine..."
-    eval "$(docker-machine env ${machine})"
-}
-
-dm-env >/dev/null 2>&1
-
-
 # go
 if type go >/dev/null 2>&1; then
     export GOPATH=$HOME/go
@@ -55,7 +46,7 @@ alias c="composer"
 
 export PATH=$HOME/.composer/vendor/bin:$PATH
 
-eval "$(php-bin symfony-autocomplete --shell=zsh | dos2unix)"
+eval "$(docker run --rm -v ~/.composer:/root/.composer bamarni/php symfony-autocomplete --shell=zsh)"
 
 # autocompletion for executables inside the php docker container (shifts first word)
 _php_bin() { shift words; (( CURRENT-- )); _symfony && return; }; compdef _php_bin php-bin;
