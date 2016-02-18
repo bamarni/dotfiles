@@ -1,3 +1,3 @@
 #!/usr/bin/env sh
 
-docker run -it --rm -v ~/.composer:/root/.composer -v "$PWD":/usr/src/cwd -w /usr/src/cwd bamarni/php ${@}
+docker run --rm -v ~/.composer:/root/.composer -v "$PWD":/usr/src/cwd -w /usr/src/cwd bamarni/php ${@}
