@@ -33,7 +33,10 @@ docker-clean() {
 # go
 if type go >/dev/null 2>&1; then
     export GOPATH=$HOME/go
+    export GOTHUB=$GOPATH/src/github.com
     PATH=$GOPATH/bin:$PATH
+    alias gop="cd \$GOPATH"
+    alias got="cd \$GOTHUB"
 fi
 
 # ansible
