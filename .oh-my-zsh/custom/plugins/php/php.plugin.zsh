@@ -2,9 +2,8 @@ alias php="php-bin php"
 alias composer="php-bin composer"
 alias phpspec="php-bin phpspec"
 alias phpunit="php-bin phpunit"
+alias puli="php-bin puli"
 alias c="composer"
-
-export PATH=$HOME/.composer/vendor/bin:$PATH
 
 eval "$(docker run --rm -v ~/.composer:/root/.composer bamarni/php symfony-autocomplete --shell=zsh)"
 
