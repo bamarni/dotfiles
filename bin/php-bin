@@ -1,3 +1,9 @@
 #!/usr/bin/env sh
 
-docker run --rm -v ~/.composer:/root/.composer -v "$PWD":/usr/src/cwd -w /usr/src/cwd bamarni/php ${@}
+docker run -it --rm \
+    --volumes-from=ssh-auth-sock \
+    -e SSH_AUTH_SOCK=/ssh-auth-sock \
+    -v ~/.composer:/root/.composer \
+    -v "$PWD":/usr/src/cwd \
+    -w /usr/src/cwd \
+    bamarni/php ${@}

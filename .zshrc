@@ -29,6 +29,11 @@ docker-clean() {
     docker rm ${(f)ids}
 }
 
+docker-ssh-fwd() {
+    local machine=${1-dev}
+    docker-machine ssh $machine -A "(docker rm ssh-auth-sock || true) && docker run --name ssh-auth-sock -v \$SSH_AUTH_SOCK:/ssh-auth-sock tianon/true && cat" >/dev/null
+}
+
 
 # go
 if type go >/dev/null 2>&1; then
@@ -38,6 +43,7 @@ if type go >/dev/null 2>&1; then
     alias gop="cd \$GOPATH"
     alias got="cd \$GOTHUB"
 fi
+
 
 # ansible
 alias ansible-playbook=ansible-playbook-debugger

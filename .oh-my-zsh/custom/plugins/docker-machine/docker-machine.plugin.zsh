@@ -1,6 +1,6 @@
 alias dm="docker-machine"
 
-dm-create-vbox-nfs() {
+dm-create-custom() {
     # creates a local machine using vbox driver with nfs share
     # extracted from https://github.com/adlogix/docker-machine-nfs/blob/master/docker-machine-nfs.sh
 
@@ -21,10 +21,10 @@ dm-create-vbox-nfs() {
     local bootlocalsh="#!/bin/sh
 sudo mkdir -p /Users
 sudo /usr/local/etc/init.d/nfs-client start
-sudo mount -t nfs -o noacl,async '$host_ip':/Users /Users"
+sudo mount -t nfs -o noacl,async $host_ip:/Users /Users
+docker run --name ssh-auth-sock tianon/true"
     local bootlocalpath='/var/lib/boot2docker/bootlocal.sh'
-    docker-machine ssh $machine "echo '$bootlocalsh' | sudo tee $bootlocalpath && sudo chmod +x $bootlocalpath" >/dev/null
-    docker-machine ssh $machine "sh $bootlocalpath"
+    docker-machine ssh $machine "echo '$bootlocalsh' | sudo tee $bootlocalpath && sudo chmod +x $bootlocalpath && sh $bootlocalpath" >/dev/null
 
     dm-env $machine
 }
