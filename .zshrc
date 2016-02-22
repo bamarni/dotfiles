@@ -5,12 +5,16 @@ export ZSH=$HOME/.oh-my-zsh
 
 ZSH_THEME="robbyrussell"
 
-plugins=(git golang docker docker-machine docker-compose php)
+plugins=(git golang docker docker-machine docker-compose)
 
 source $ZSH/oh-my-zsh.sh
 
 # executables
 export PATH=$HOME/bin:$PATH
+
+
+# shell completion
+fpath=(~/.zsh_completion $fpath) && compinit
 
 
 # docker
@@ -43,6 +47,12 @@ if type go >/dev/null 2>&1; then
     alias gop="cd \$GOPATH"
     alias got="cd \$GOTHUB"
 fi
+
+
+# php
+alias phpunit="php-bin phpunit"
+alias puli="php-bin puli"
+alias c="composer"
 
 
 # ansible

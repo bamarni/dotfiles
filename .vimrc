@@ -12,6 +12,10 @@ call plug#end()
 
 let mapleader = " "
 
+:set mouse=a
+
 map <Leader>n :NERDTreeTabsToggle<CR>
+
+:set number
 
 :hi Directory guifg=#FF0000 ctermfg=red " Directory color
