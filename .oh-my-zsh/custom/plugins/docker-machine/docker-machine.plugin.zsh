@@ -1,4 +1,5 @@
 alias dm="docker-machine"
+alias dm-dns="docker-machine-dns"
 
 dm-create-custom() {
     # creates a local machine using vbox driver with nfs share

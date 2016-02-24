@@ -4,3 +4,6 @@
 [user]
     name = Bilal Amarni
     email = bilal.amarni@gmail.com
+
+[help]
+    autocorrect = 1

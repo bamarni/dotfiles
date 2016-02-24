@@ -9,6 +9,12 @@ plugins=(git golang docker docker-machine docker-compose)
 
 source $ZSH/oh-my-zsh.sh
 
+
+# editor
+export EDITOR=vim
+export VISUAL=vim
+
+
 # executables
 export PATH=$HOME/bin:$PATH
 
@@ -35,7 +41,7 @@ docker-clean() {
 
 docker-ssh-fwd() {
     local machine=${1-dev}
-    docker-machine ssh $machine -A "(docker rm ssh-auth-sock || true) && docker run --name ssh-auth-sock -v \$SSH_AUTH_SOCK:/ssh-auth-sock tianon/true && cat" >/dev/null
+    docker-machine ssh $machine -A -o ServerAliveInterval=60 "(docker rm ssh-auth-sock || true) && docker run --name ssh-auth-sock -v \$SSH_AUTH_SOCK:/ssh-auth-sock tianon/true && cat" >/dev/null
 }
 
 
@@ -55,15 +61,16 @@ alias puli="php-bin puli"
 alias c="composer"
 
 
-# ansible
-alias ansible-playbook=ansible-playbook-debugger
-
-# for long running playbooks : "ansible-playbook ...; saydone"
+# "sh long-running-task.sh; saydone"
 saydone() {
-    voices=("Good News" Whisper Hysterical Princess Bells "Bad News" Bahh)
-    words=(done maybe no failure "oh my god" finished yes success "you broke it")
+    if [[ "$OSTYPE" == "darwin"* ]]; then
+        voices=("Good News" Whisper Hysterical Princess Bells "Bad News" Bahh)
+        words=(done maybe no failure "oh my god" finished yes success "you broke it")
 
-    say -v "${voices[RANDOM % ${#voices[@]} + 1]}" "${words[RANDOM % ${#words[@]} + 1]}"
+        say -v "${voices[RANDOM % ${#voices[@]} + 1]}" "${words[RANDOM % ${#words[@]} + 1]}"
+    else
+        echo "OS not supported yet"
+    fi
 }
 
 
