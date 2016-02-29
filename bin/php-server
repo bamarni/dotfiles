@@ -1,0 +1,12 @@
+#!/usr/bin/env sh
+
+# Runs PHP's built-in web server. listen by default on port 80
+
+port=${1-80}
+
+docker run -it --rm \
+    -p $port:$port \
+    -v ~/.composer:/root/.composer \
+    -v "$PWD":/usr/src/cwd \
+    -w /usr/src/cwd bamarni/php \
+    php -S 0.0.0.0:$port

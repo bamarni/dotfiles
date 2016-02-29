@@ -1,8 +1,16 @@
 #!/usr/bin/env sh
 
+# Runs a command in the PHP container
+#
+# Volumes are :
+#   - current working directory
+#   - Composer home directory
+#   - SSH helpers (known_hosts and agent forwarding), mainly needed for Composer installs from source
+
 docker run -it --rm \
     --volumes-from=ssh-auth-sock \
     -e SSH_AUTH_SOCK=/ssh-auth-sock \
+    -v ~/.ssh/known_hosts:/root/.ssh/known_hosts \
     -v ~/.composer:/root/.composer \
     -v "$PWD":/usr/src/cwd \
     -w /usr/src/cwd \

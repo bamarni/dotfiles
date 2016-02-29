@@ -1,12 +1,17 @@
+# do not echo back
 [[ -t 0 ]] && stty -echo
 echo -n '\r\e[K'
 
+
+# if a glob pattern for an argument has no match, leave it unchanged instead of printing an error
+# allows commands like "composer update acme/*"
+setopt nonomatch
+
+
+# oh-my-zsh stuff
 export ZSH=$HOME/.oh-my-zsh
-
 ZSH_THEME="robbyrussell"
-
 plugins=(git golang docker docker-machine docker-compose)
-
 source $ZSH/oh-my-zsh.sh
 
 
@@ -39,10 +44,13 @@ docker-clean() {
     docker rm ${(f)ids}
 }
 
+# creates a data-only container for ssh agent forwarding
 docker-ssh-fwd() {
     local machine=${1-dev}
     docker-machine ssh $machine -A -o ServerAliveInterval=60 "(docker rm ssh-auth-sock || true) && docker run --name ssh-auth-sock -v \$SSH_AUTH_SOCK:/ssh-auth-sock tianon/true && cat" >/dev/null
 }
+
+dm-env >/dev/null 2>&1
 
 
 # go
