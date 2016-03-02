@@ -8,5 +8,5 @@ docker run -it --rm \
     -p $port:$port \
     -v ~/.composer:/root/.composer \
     -v "$PWD":/usr/src/cwd \
-    -w /usr/src/cwd bamarni/php \
+    -w /usr/src/cwd bamarni/php:${PHP_VERSION-latest} \
     php -S 0.0.0.0:$port
