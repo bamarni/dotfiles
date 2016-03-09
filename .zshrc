@@ -37,8 +37,7 @@ docker-clean() {
             docker stop ${(f)ids}
         fi
     fi
-    ids=$(docker ps -aq -f status=created)
-    ids+=$(docker ps -aq -f status=exited)
+    ids=$(docker ps -aq -f status=exited)
     [[ -z "$ids" ]] && return
     echo "Removing inactive containers..."
     docker rm ${(f)ids}
