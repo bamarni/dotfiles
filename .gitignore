@@ -4,3 +4,7 @@
 .DS_Store
 .envrc
 .puli
+
+# vim swap files
+[._]*.s[a-w][a-z]
+[._]s[a-w][a-z]

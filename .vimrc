@@ -1,5 +1,6 @@
 call plug#begin('~/.vim/plugged')
 
+Plug 'elzr/vim-json'
 Plug 'fatih/vim-go'
 Plug 'jistr/vim-nerdtree-tabs'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }

@@ -7,6 +7,9 @@ echo -n '\r\e[K'
 # allows commands like "composer update acme/*"
 setopt nonomatch
 
+# delete old history line if new line is a duplicate
+setopt HIST_IGNORE_ALL_DUPS
+
 
 # oh-my-zsh stuff
 export ZSH=$HOME/.oh-my-zsh

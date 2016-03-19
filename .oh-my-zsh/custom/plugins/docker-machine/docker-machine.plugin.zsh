@@ -7,7 +7,7 @@ alias dm-dns="docker-machine-dns -server-only -port 10054"
 #   - dummy ssh-auth-sock container at bootup to allow agent forwarding (see docker-ssh-fwd())
 dm-create-custom() {
     local machine=${1-dev}
-    local create_cmd="docker-machine create -d virtualbox --virtualbox-cpu-count "-1" --virtualbox-no-share $machine"
+    local create_cmd="docker-machine create -d virtualbox --virtualbox-cpu-count "-1" --virtualbox-no-share --virtualbox-memory "512" $machine"
     echo $create_cmd && eval "$create_cmd"
 
     echo "Adding NFS export in /etc/exports, password prompt might show up..."
