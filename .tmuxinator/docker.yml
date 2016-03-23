@@ -1,6 +1,6 @@
-# ~/.tmuxinator/go.yml
+# ~/.tmuxinator/docker.yml
 
-name: go
+name: docker
 root: <%= ENV["CWD"] %>
 
 windows:
@@ -14,5 +14,5 @@ windows:
         - #terminal
       layout: 2537,135x27,0,0[135x19,0,0,0,135x7,0,20,2]
 
-  - bin: <%= ENV["GOPATH"] %>/bin
+  - logs: docker-compose up --force-recreate
 

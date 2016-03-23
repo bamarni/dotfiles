@@ -1,6 +1,6 @@
-# ~/.tmuxinator/go.yml
+# ~/.tmuxinator/ide.yml
 
-name: go
+name: ide
 root: <%= ENV["CWD"] %>
 
 windows:
@@ -13,6 +13,4 @@ windows:
           - ":NERDTreeTabsOpen"
         - #terminal
       layout: 2537,135x27,0,0[135x19,0,0,0,135x7,0,20,2]
-
-  - bin: <%= ENV["GOPATH"] %>/bin
 
