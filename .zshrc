@@ -52,8 +52,6 @@ docker-ssh-fwd() {
     docker-machine ssh $machine -A -o ServerAliveInterval=60 "(docker rm ssh-auth-sock || true) && docker run --name ssh-auth-sock -v \$SSH_AUTH_SOCK:/ssh-auth-sock tianon/true && cat" >/dev/null
 }
 
-dm-env >/dev/null 2>&1
-
 
 # go
 if type go >/dev/null 2>&1; then
