@@ -1,5 +1,6 @@
 call plug#begin('~/.vim/plugged')
 
+Plug 'airblade/vim-gitgutter'
 Plug 'elzr/vim-json'
 Plug 'fatih/vim-go'
 Plug 'jistr/vim-nerdtree-tabs'
@@ -25,6 +26,9 @@ map <Leader>n :NERDTreeTabsToggle<CR>
 
 " status bar
 let g:airline_theme='bubblegum'
-let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1 " https://github.com/vim-airline/vim-airline/issues/451
 set laststatus=2 " https://github.com/vim-airline/vim-airline/issues/130
+set ttimeoutlen=50
+
+" detect *.md files as markdown
+autocmd BufNewFile,BufReadPost *.md set filetype=markdown
