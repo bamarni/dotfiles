@@ -1,6 +1,8 @@
 #!/usr/bin/env sh
 
-# Runs a command in the PHP container
+# Runs a command in the PHP debug container.
+#
+# It assumes a configured IDE and a docker-machine using vbox.
 #
 # Volumes are :
 #   - current working directory
@@ -11,9 +13,11 @@
 docker run -it --rm \
     --volumes-from=ssh-auth-sock \
     -e SSH_AUTH_SOCK=/ssh-auth-sock \
+    -e PHP_IDE_CONFIG="serverName=dev.docker" \
+    -e XDEBUG_CONFIG="remote_host=10.0.2.2" \
     -v ~/.ssh/known_hosts:/root/.ssh/known_hosts \
     -v ~/.composer:/root/.composer \
     -v php-bin:/root/bin \
     -v "$PWD":/usr/src/cwd \
     -w /usr/src/cwd \
-    bamarni/php:${PHP_VERSION-7}-cli ${@}
+    bamarni/php:${PHP_VERSION-7}-cli-debug ${@}

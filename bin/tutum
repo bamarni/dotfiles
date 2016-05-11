@@ -1,7 +1,0 @@
-#!/usr/bin/env sh
-
-echo >&2 "[WARNING] Tutum has been deprecated for Docker Cloud, all services will shut down on May 31st 2016."
-
-docker run -it -e TUTUM_USER -e TUTUM_APIKEY tutum/cli ${@}
-
-echo >&2 "[WARNING] Tutum has been deprecated for Docker Cloud, all services will shut down on May 31st 2016."

@@ -1,6 +1,7 @@
 call plug#begin('~/.vim/plugged')
 
 Plug 'airblade/vim-gitgutter'
+Plug 'conradirwin/vim-bracketed-paste'
 Plug 'elzr/vim-json'
 Plug 'fatih/vim-go'
 Plug 'jistr/vim-nerdtree-tabs'
