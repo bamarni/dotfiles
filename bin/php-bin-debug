@@ -20,4 +20,4 @@ docker run -it --rm \
     -v php-bin:/root/bin \
     -v "$PWD":/usr/src/cwd \
     -w /usr/src/cwd \
-    bamarni/php:${PHP_VERSION-7}-cli-debug ${@}
+    bamarni/php:${PHP_VERSION-7}-cli-debug /usr/bin/tini -- ${@}
