@@ -8,7 +8,13 @@
 #   - SSH helpers (known_hosts and agent forwarding), mainly needed for Composer installs from source
 #   - "php-bin" is a named volume containing composer phar, mainly needed to allow selfupdate command
 
-docker run -it --rm \
+# skip pseudo-tty allocation when stdout is piped / redirected, otherwise stderr gets mixed with it.
+# (cf. https://github.com/docker/docker/issues/25542#issuecomment-238656457)
+if [ -t 1 ] ; then
+	tty="-t"
+fi
+
+docker run -i $tty --rm \
     --volumes-from=ssh-auth-sock \
     -e SSH_AUTH_SOCK=/ssh-auth-sock \
     -v ~/.ssh/known_hosts:/root/.ssh/known_hosts \
