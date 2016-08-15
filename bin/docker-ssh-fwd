@@ -1,0 +1,8 @@
+#!/usr/bin/env sh
+
+# creates a temporary container for ssh agent forwarding
+
+machine=${1-dev}
+duration=${2-900}
+
+docker-machine ssh $machine -AT -o ServerAliveInterval=60 "(docker rm ssh-auth-sock || true) && docker run --name ssh-auth-sock -v \$SSH_AUTH_SOCK:/ssh-auth-sock tianon/true && sleep $duration" </dev/null &>/dev/null
