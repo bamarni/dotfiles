@@ -38,3 +38,11 @@ dm-env() {
     echo "Setting up the environment for the \"$machine\" machine..."
     eval "$(docker-machine env ${machine} </dev/null)"
 }
+
+# Helper to SSH into the same docker machine directory than the current one
+# Mainly useful in development 
+dm-ssh() {
+    local machine=${1-dev}
+    echo "SSHing into \"$PWD\" from \"$machine\" machine..."
+    docker-machine ssh $machine -t "cd $PWD; sh"
+}
