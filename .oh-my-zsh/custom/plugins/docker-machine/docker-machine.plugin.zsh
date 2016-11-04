@@ -44,5 +44,5 @@ dm-env() {
 dm-ssh() {
     local machine=${1-dev}
     echo "SSHing into \"$PWD\" from \"$machine\" machine..."
-    docker-machine ssh $machine -t "cd $PWD; sh"
+    docker-machine ssh $machine -At "cd $PWD; sh"
 }
