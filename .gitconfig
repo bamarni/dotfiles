@@ -8,8 +8,15 @@
 [help]
     autocorrect = 1
 
+[sendemail]
+    smtpEncryption = tls
+    smtpServer = smtp.gmail.com
+    smtpUser = bilal.amarni@gmail.com
+    smtpServerPort = 587
+
 [url "git@github.com:"]
     insteadOf = https://github.com/
 
 [url "git@bitbucket.org:"]
     insteadOf = https://bitbucket.org/
+
