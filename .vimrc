@@ -33,3 +33,5 @@ set ttimeoutlen=50
 
 " detect *.md files as markdown
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
+
+set background=dark
