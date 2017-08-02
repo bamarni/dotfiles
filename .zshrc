@@ -5,11 +5,13 @@ echo -n '\r\e[K'
 
 # if a glob pattern for an argument has no match, leave it unchanged instead of printing an error
 # allows commands like "composer update acme/*"
-setopt nonomatch
+unsetopt NOMATCH
 
 # delete old history line if new line is a duplicate
 setopt HIST_IGNORE_ALL_DUPS
 
+# Print the exit value of programs with non-zero exit status
+setopt PRINT_EXIT_VALUE
 
 # oh-my-zsh stuff
 export ZSH=$HOME/.oh-my-zsh
